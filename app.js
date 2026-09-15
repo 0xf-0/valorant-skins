@@ -1,4 +1,30 @@
 // VALORANT TACTICAL TERMINAL // CLIENT ENGINE WITH RIOT WEB AUTH
+window.showLoginModal = function(e) {
+  if (e && e.preventDefault) e.preventDefault();
+  const modal = document.getElementById("loginModal");
+  if (modal) {
+    modal.classList.remove("hidden");
+    modal.style.display = "flex";
+  }
+  const form = document.getElementById("loginForm");
+  const twoFa = document.getElementById("twoFactorForm");
+  if (form) form.classList.remove("hidden");
+  if (twoFa) twoFa.classList.add("hidden");
+  const uInput = document.getElementById("usernameInput");
+  if (uInput) {
+    uInput.value = "";
+    setTimeout(() => uInput.focus(), 60);
+  }
+};
+
+window.hideLoginModal = function() {
+  const modal = document.getElementById("loginModal");
+  if (modal) {
+    modal.classList.add("hidden");
+    modal.style.display = "none";
+  }
+};
+
 document.addEventListener("DOMContentLoaded", () => {
   let allSkins = [];
   let currentCategory = "all";
@@ -287,20 +313,29 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // --- RIOT WEB LOGIN MODAL LOGIC ---
-  function showLoginModal() {
-    loginModal.classList.remove("hidden");
-    loginForm.classList.remove("hidden");
-    twoFactorForm.classList.add("hidden");
+  window.showLoginModal = function(e) {
+    if (e && e.preventDefault) e.preventDefault();
+    if (loginModal) {
+      loginModal.classList.remove("hidden");
+      loginModal.style.display = "flex";
+    }
+    if (loginForm) loginForm.classList.remove("hidden");
+    if (twoFactorForm) twoFactorForm.classList.add("hidden");
     hideModalAlert();
-    usernameInput.value = "";
-    passwordInput.value = "";
-    usernameInput.focus();
-  }
+    if (usernameInput) {
+      usernameInput.value = "";
+      setTimeout(() => usernameInput.focus(), 60);
+    }
+    if (passwordInput) passwordInput.value = "";
+  };
 
-  function hideLoginModal() {
-    loginModal.classList.add("hidden");
+  window.hideLoginModal = function() {
+    if (loginModal) {
+      loginModal.classList.add("hidden");
+      loginModal.style.display = "none";
+    }
     hideModalAlert();
-  }
+  };
 
   function showModalAlert(msg, type = "error") {
     modalAlert.textContent = msg;
@@ -327,6 +362,8 @@ document.addEventListener("DOMContentLoaded", () => {
     submitLoginBtn.disabled = true;
     showModalAlert("Riot sunucularına bağlanılıyor...", "loading");
 
+    const isStaticHost = window.location.hostname.includes("github.io") || window.location.protocol === "file:";
+
     try {
       const res = await fetch("/api/login", {
         method: "POST",
@@ -334,10 +371,19 @@ document.addEventListener("DOMContentLoaded", () => {
         body: JSON.stringify({ username, password })
       });
 
+      if (!res.ok) {
+        if (isStaticHost) {
+          showModalAlert("Bu site GitHub üzerinde statik çalışmaktadır. Kişisel hesabınızı bağlamak için bilgisayarınızda 'run.bat' dosyasını çalıştırın (şifresiz Riot'u otomatik algılar).", "error");
+          submitLoginBtn.disabled = false;
+          return;
+        }
+        throw new Error(`HTTP ${res.status}`);
+      }
+
       const data = await res.json();
 
       if (data.status === "success") {
-        hideLoginModal();
+        window.hideLoginModal();
         renderTerminal(data);
       } else if (data.status === "2fa_required") {
         current2FASessionId = data.session_id;
@@ -351,7 +397,11 @@ document.addEventListener("DOMContentLoaded", () => {
         showModalAlert(data.message || "Giriş başarısız oldu.", "error");
       }
     } catch (err) {
-      showModalAlert("Sunucu bağlantı hatası. Lütfen tekrar deneyin.", "error");
+      if (isStaticHost) {
+        showModalAlert("Bu site GitHub üzerinde statik çalışmaktadır. Kişisel hesabınızı bağlamak için bilgisayarınızda 'run.bat' dosyasını çalıştırın (şifresiz Riot'u otomatik algılar).", "error");
+      } else {
+        showModalAlert("Sunucu bağlantı hatası. Lütfen sunucunun (run.bat) açık olduğundan emin olun.", "error");
+      }
     } finally {
       submitLoginBtn.disabled = false;
     }
@@ -380,7 +430,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const data = await res.json();
 
       if (data.status === "success") {
-        hideLoginModal();
+        window.hideLoginModal();
         renderTerminal(data);
       } else {
         showModalAlert(data.message || "Geçersiz 2FA kodu.", "error");
@@ -398,14 +448,14 @@ document.addEventListener("DOMContentLoaded", () => {
     hideModalAlert();
   });
 
-  modalCloseBtn.addEventListener("click", hideLoginModal);
+  modalCloseBtn.addEventListener("click", window.hideLoginModal);
   loginModal.addEventListener("click", (e) => {
-    if (e.target === loginModal) hideLoginModal();
+    if (e.target === loginModal) window.hideLoginModal();
   });
 
-  loginBtn.addEventListener("click", showLoginModal);
+  loginBtn.addEventListener("click", window.showLoginModal);
   if (emptyLoginBtn) {
-    emptyLoginBtn.addEventListener("click", showLoginModal);
+    emptyLoginBtn.addEventListener("click", window.showLoginModal);
   }
 
   logoutBtn.addEventListener("click", async () => {

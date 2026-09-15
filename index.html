@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,500;0,700;1,700&family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=2.6">
 </head>
 <body>
   <!-- Ambient Tactical Grid & Laser FX -->
@@ -50,7 +50,7 @@
         </div>
 
         <!-- Riot Web Login Button -->
-        <button id="loginBtn" class="btn-tactical primary" title="Riot Games hesabınla giriş yap">
+        <button id="loginBtn" class="btn-tactical primary" onclick="window.showLoginModal && window.showLoginModal(event)" title="Riot Games hesabınla giriş yap">
           <span class="btn-glitch-accent"></span>
           <span>RİOT İLE GİRİŞ YAP</span>
         </button>
@@ -228,7 +228,7 @@
       <h3 id="emptyTitle">OTURUM BEKLENİYOR</h3>
       <p id="emptyDesc">Bilgisayarınızda Riot Client açık ise otomatik algılanır veya Riot Games hesabınız ile doğrudan giriş yapabilirsiniz.</p>
       <div class="standby-actions">
-        <button id="emptyLoginBtn" class="btn-tactical primary">RİOT HESABINLA GİRİŞ YAP</button>
+        <button id="emptyLoginBtn" class="btn-tactical primary" onclick="window.showLoginModal && window.showLoginModal(event)">RİOT HESABINLA GİRİŞ YAP</button>
       </div>
     </div>
   </div>
@@ -247,7 +247,7 @@
           <span class="modal-sys-code">// AUTH PROTOCOL : RIOT SIGN-ON</span>
           <h2 class="modal-title">RİOT HESAP GİRİŞİ</h2>
         </div>
-        <button id="modalCloseBtn" class="btn-modal-close">&times;</button>
+        <button id="modalCloseBtn" class="btn-modal-close" onclick="window.hideLoginModal && window.hideLoginModal()">&times;</button>
       </div>
 
       <div class="modal-body">
@@ -301,12 +301,12 @@
 
         <div class="modal-footer-note">
           <span class="sec-dot"></span>
-          <span>Giriş bilgileri Riot'un resmi API sunucularına iletilir, kaydedilmez.</span>
+          <span>Giriş bilgileri doğrudan Riot Games API sunucularına iletilir, asla kaydedilmez.</span>
         </div>
       </div>
     </div>
   </div>
 
-  <script src="app.js"></script>
+  <script src="app.js?v=2.6"></script>
 </body>
 </html>
