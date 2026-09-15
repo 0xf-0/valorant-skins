@@ -4,7 +4,6 @@ document.addEventListener("DOMContentLoaded", () => {
   let currentCategory = "all";
   let currentSort = "price_desc";
   let searchQuery = "";
-  
   let pollingInterval = null;
 
   // DOM References
@@ -32,10 +31,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const emptyState = document.getElementById("emptyState");
   const emptyTitle = document.getElementById("emptyTitle");
   const emptyDesc = document.getElementById("emptyDesc");
-  
-
-  
-  
   const refreshBtn = document.getElementById("refreshBtn");
 
   const catCountAll = document.getElementById("catCountAll");
@@ -73,9 +68,7 @@ document.addEventListener("DOMContentLoaded", () => {
         renderTerminal(data);
         return;
       }
-    } catch (err) {
-      // Local backend not reachable, proceed to static fallback
-    }
+    } catch (err) {}
 
     try {
       const staticRes = await fetch("inventory.json");
@@ -93,9 +86,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function renderTerminal(data) {
-    isDemoActive = data.is_demo || false;
-    
-
     if (data.status === "waiting_riot_client") {
       updateStatus("waiting", "RIOT CLIENT BEKLENİYOR");
       accountPill.classList.add("hidden");
@@ -122,8 +112,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const reg = (acc.affinity || "EU").toUpperCase();
     const country = (acc.country || "TR").toUpperCase();
 
-    
-      updateStatus("connected", "RIOT GATEWAY BAĞLANDI");
+    updateStatus("connected", "RIOT GATEWAY BAĞLANDI");
 
     accountPill.classList.remove("hidden");
     accountName.textContent = `${name}${tag}`;
@@ -131,7 +120,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Stats
     const sum = data.summary || {};
-    const currentVp = parseInt(totalVpEl.textContent.replace(/\\D/g, "")) || 0;
+    const currentVp = parseInt(totalVpEl.textContent.replace(/\D/g, "")) || 0;
     animateValue(totalVpEl, currentVp, sum.total_vp || 0, 500);
     totalTryEl.textContent = `${Number(sum.total_try || 0).toLocaleString("tr-TR")} ₺`;
     totalSkinsCountEl.textContent = sum.total_skins || 0;
@@ -148,7 +137,7 @@ document.addEventListener("DOMContentLoaded", () => {
     updateCategoryCounters(allSkins);
 
     if (allSkins.length === 0) {
-      showStandby("ÖZEL KAPLAMA BULUNAMADI", "Bu hesapta standart varsayılan silahlar dışında özel kaplama bulunmuyor. Başka bir hesaba geçtiğinizde sistem anında güncellenir.");
+      showStandby("ÖZEL KAPLAMA BULUNAMADI", "Bu hesapta standart varsayılan silahlar dışında özel kaplama bulunmuyor.");
     } else {
       hideStandby();
       filterAndDisplayCards();
@@ -158,12 +147,6 @@ document.addEventListener("DOMContentLoaded", () => {
   function updateStatus(type, label) {
     statusPill.className = `tactical-status ${type}`;
     statusText.textContent = label;
-  }
-
-   else {
-      demoBtn.classList.remove("active");
-      demoBtnText.textContent = "DEMO MODU";
-    }
   }
 
   function resetStats() {
@@ -320,50 +303,8 @@ document.addEventListener("DOMContentLoaded", () => {
     filterAndDisplayCards();
   });
 
-  async function toggleDemo() {
-    try {
-      const r = await fetch("/api/toggle-demo", { method: "POST" });
-      if (r.ok) {
-        await fetchInventory();
-        return;
-      }
-    } catch (e) {}
-
-    // Static fallback toggle
-    isDemoActive = !isDemoActive;
-    
-    if (isDemoActive) {
-      renderTerminal({
-        status: "success",
-        is_demo: true,
-        account: { game_name: "TACTICAL_DEMO", tag_line: "VCT", affinity: "eu", country: "tr" },
-        wallet: { vp: 4250, radianite: 180, kc: 8400 },
-        summary: { total_skins: 24, total_vp: 49200, total_try: 13278, knives_count: 5, high_tier_count: 14 },
-        skins: getDemoSkins()
-      });
-    } else {
-      await fetchInventory();
-    }
-  }
-
-  function getDemoSkins() {
-    return [
-      { name: "Champions 2021 Vandal", weapon: "VANDAL", weapon_category: "rifle", is_melee: false, tier_name: "Seçkin", tier_color: "#ffd700", badge: "VCT // CHAMPIONS", price_vp: 2675, price_try: 722, tier_rank: 6, unlocked_levels: 4, total_levels: 4, unlocked_chromas: 0, icon: "https://media.valorant-api.com/weaponskins/b576b9f1-407d-310a-6009-6287fb6829bc/displayicon.png" },
-      { name: "Kuronami Vandal", weapon: "VANDAL", weapon_category: "rifle", is_melee: false, tier_name: "Seçkin", tier_color: "#f5955b", badge: "TIER // EXCLUSIVE", price_vp: 2175, price_try: 587, tier_rank: 5, unlocked_levels: 4, total_levels: 4, unlocked_chromas: 3, icon: "https://media.valorant-api.com/weaponskins/c4883e50-4494-202c-3ec3-6b8a9284f00b/displayicon.png" },
-      { name: "Yağmacı Karambit", weapon: "BIÇAK", weapon_category: "melee", is_melee: true, tier_name: "İhtişamlı", tier_color: "#d1548d", badge: "TIER // PREMIUM", price_vp: 3550, price_try: 958, tier_rank: 3, unlocked_levels: 3, total_levels: 3, unlocked_chromas: 3, icon: "https://media.valorant-api.com/weaponskins/4986a893-48a5-4c23-11f2-70bb9e9d284d/displayicon.png" },
-      { name: "Ejder Ateşi Vandal", weapon: "VANDAL", weapon_category: "rifle", is_melee: false, tier_name: "Ultra", tier_color: "#fad663", badge: "TIER // ULTRA", price_vp: 2475, price_try: 668, tier_rank: 4, unlocked_levels: 4, total_levels: 4, unlocked_chromas: 3, icon: "https://media.valorant-api.com/weaponskins/9b62faf1-416c-b736-0edb-39b890f1f18d/displayicon.png" },
-      { name: "Asil//2.0 Phantom", weapon: "PHANTOM", weapon_category: "rifle", is_melee: false, tier_name: "İhtişamlı", tier_color: "#d1548d", badge: "TIER // PREMIUM", price_vp: 1775, price_try: 479, tier_rank: 3, unlocked_levels: 4, total_levels: 4, unlocked_chromas: 3, icon: "https://media.valorant-api.com/weaponskins/2715f184-46cc-bec1-dd7c-e7b4d1aeb625/displayicon.png" },
-      { name: "Kaosun Başlangıcı Vandal", weapon: "VANDAL", weapon_category: "rifle", is_melee: false, tier_name: "Seçkin", tier_color: "#f5955b", badge: "TIER // EXCLUSIVE", price_vp: 2175, price_try: 587, tier_rank: 5, unlocked_levels: 4, total_levels: 4, unlocked_chromas: 3, icon: "https://media.valorant-api.com/weaponskins/310b80d8-4e1b-b4f0-b713-9dad458ce734/displayicon.png" },
-      { name: "İyon Operatör", weapon: "OPERATÖR", weapon_category: "sniper", is_melee: false, tier_name: "İhtişamlı", tier_color: "#d1548d", badge: "TIER // PREMIUM", price_vp: 1775, price_try: 479, tier_rank: 3, unlocked_levels: 4, total_levels: 4, unlocked_chromas: 3, icon: "https://media.valorant-api.com/weaponskins/44064b11-4e74-19c9-80a4-9f80875adaf5/displayicon.png" },
-      { name: "Artizan Flöre", weapon: "BIÇAK", weapon_category: "melee", is_melee: true, tier_name: "Seçkin", tier_color: "#f5955b", badge: "TIER // EXCLUSIVE", price_vp: 4350, price_try: 1175, tier_rank: 5, unlocked_levels: 1, total_levels: 1, unlocked_chromas: 3, icon: "https://media.valorant-api.com/weaponskins/f3f962bd-4a19-b363-e939-6a91b897a28c/displayicon.png" }
-    ];
-  }
-
-  
-  
   refreshBtn.addEventListener("click", fetchInventory);
 
-  // Initial load & 3-second live refresh
   fetchInventory();
   pollingInterval = setInterval(fetchInventory, 3000);
 });
