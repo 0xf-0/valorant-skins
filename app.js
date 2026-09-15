@@ -1,9 +1,10 @@
-// VALORANT TACTICAL TERMINAL // CLIENT ENGINE
+// VALORANT TACTICAL TERMINAL // CLIENT ENGINE WITH RIOT WEB AUTH
 document.addEventListener("DOMContentLoaded", () => {
   let allSkins = [];
   let currentCategory = "all";
   let currentSort = "price_desc";
   let searchQuery = "";
+  let current2FASessionId = null;
   let pollingInterval = null;
 
   // DOM References
@@ -32,6 +33,23 @@ document.addEventListener("DOMContentLoaded", () => {
   const emptyTitle = document.getElementById("emptyTitle");
   const emptyDesc = document.getElementById("emptyDesc");
   const refreshBtn = document.getElementById("refreshBtn");
+  const logoutBtn = document.getElementById("logoutBtn");
+  const loginBtn = document.getElementById("loginBtn");
+  const emptyLoginBtn = document.getElementById("emptyLoginBtn");
+
+  // Modal References
+  const loginModal = document.getElementById("loginModal");
+  const modalCloseBtn = document.getElementById("modalCloseBtn");
+  const modalAlert = document.getElementById("modalAlert");
+  const loginForm = document.getElementById("loginForm");
+  const usernameInput = document.getElementById("usernameInput");
+  const passwordInput = document.getElementById("passwordInput");
+  const submitLoginBtn = document.getElementById("submitLoginBtn");
+  const twoFactorForm = document.getElementById("twoFactorForm");
+  const twoFactorEmail = document.getElementById("twoFactorEmail");
+  const twoFactorCodeInput = document.getElementById("twoFactorCodeInput");
+  const submit2faBtn = document.getElementById("submit2faBtn");
+  const backToLoginBtn = document.getElementById("backToLoginBtn");
 
   const catCountAll = document.getElementById("catCountAll");
   const catCountMelee = document.getElementById("catCountMelee");
@@ -86,21 +104,12 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function renderTerminal(data) {
-    if (data.status === "waiting_riot_client") {
-      updateStatus("waiting", "RIOT CLIENT BEKLENİYOR");
+    if (data.status === "waiting_riot_client" || data.status === "waiting_login") {
+      updateStatus("waiting", data.message || "OTURUM AÇILMASI BEKLENİYOR");
       accountPill.classList.add("hidden");
+      logoutBtn.classList.add("hidden");
       resetStats();
-      showStandby("RIOT CLIENT KAPALI", "Bilgisayarınızda Riot Client veya VALORANT başlatıldığında hesabınız otomatik olarak taranacaktır.");
-      allSkins = [];
-      updateCategoryCounters([]);
-      return;
-    }
-
-    if (data.status === "waiting_login") {
-      updateStatus("waiting", "OTURUM AÇILMASI BEKLENİYOR");
-      accountPill.classList.add("hidden");
-      resetStats();
-      showStandby("OTURUM BEKLENİYOR", "Riot Client açık fakat kullanıcı girişi yapılmamış. Lütfen giriş yapın.");
+      showStandby("OTURUM BEKLENİYOR", "Riot Client açık ise otomatik algılanır veya Riot Games hesabınız ile web üzerinden giriş yapabilirsiniz.");
       allSkins = [];
       updateCategoryCounters([]);
       return;
@@ -112,7 +121,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const reg = (acc.affinity || "EU").toUpperCase();
     const country = (acc.country || "TR").toUpperCase();
 
-    updateStatus("connected", "RIOT GATEWAY BAĞLANDI");
+    if (data.auth_method === "rso_remote" || data.auth_method === "web_login") {
+      updateStatus("connected", "RİOT WEB PROTOKOLÜ BAĞLANDI");
+      logoutBtn.classList.remove("hidden");
+    } else {
+      updateStatus("connected", "RIOT CLIENT BAĞLANDI");
+      logoutBtn.classList.add("hidden");
+    }
 
     accountPill.classList.remove("hidden");
     accountName.textContent = `${name}${tag}`;
@@ -271,7 +286,139 @@ document.addEventListener("DOMContentLoaded", () => {
     }).join("");
   }
 
-  // Event Handlers
+  // --- RIOT WEB LOGIN MODAL LOGIC ---
+  function showLoginModal() {
+    loginModal.classList.remove("hidden");
+    loginForm.classList.remove("hidden");
+    twoFactorForm.classList.add("hidden");
+    hideModalAlert();
+    usernameInput.value = "";
+    passwordInput.value = "";
+    usernameInput.focus();
+  }
+
+  function hideLoginModal() {
+    loginModal.classList.add("hidden");
+    hideModalAlert();
+  }
+
+  function showModalAlert(msg, type = "error") {
+    modalAlert.textContent = msg;
+    modalAlert.className = `modal-alert ${type}`;
+    modalAlert.classList.remove("hidden");
+  }
+
+  function hideModalAlert() {
+    modalAlert.classList.add("hidden");
+    modalAlert.textContent = "";
+  }
+
+  // Step 1: Submit Username & Password
+  loginForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const username = usernameInput.value.trim();
+    const password = passwordInput.value;
+
+    if (!username || !password) {
+      showModalAlert("Lütfen kullanıcı adı ve şifrenizi girin.", "error");
+      return;
+    }
+
+    submitLoginBtn.disabled = true;
+    showModalAlert("Riot sunucularına bağlanılıyor...", "loading");
+
+    try {
+      const res = await fetch("/api/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username, password })
+      });
+
+      const data = await res.json();
+
+      if (data.status === "success") {
+        hideLoginModal();
+        renderTerminal(data);
+      } else if (data.status === "2fa_required") {
+        current2FASessionId = data.session_id;
+        loginForm.classList.add("hidden");
+        twoFactorForm.classList.remove("hidden");
+        twoFactorEmail.textContent = data.email ? `Kod e-postanıza (${data.email}) gönderildi.` : "E-postanıza gönderilen kodu girin.";
+        twoFactorCodeInput.value = "";
+        twoFactorCodeInput.focus();
+        showModalAlert("2FA Kodu Gönderildi.", "loading");
+      } else {
+        showModalAlert(data.message || "Giriş başarısız oldu.", "error");
+      }
+    } catch (err) {
+      showModalAlert("Sunucu bağlantı hatası. Lütfen tekrar deneyin.", "error");
+    } finally {
+      submitLoginBtn.disabled = false;
+    }
+  });
+
+  // Step 2: Submit 2FA Code
+  twoFactorForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const code = twoFactorCodeInput.value.trim();
+
+    if (!code || !current2FASessionId) {
+      showModalAlert("Lütfen doğrulama kodunu girin.", "error");
+      return;
+    }
+
+    submit2faBtn.disabled = true;
+    showModalAlert("Kod doğrulanıyor...", "loading");
+
+    try {
+      const res = await fetch("/api/verify-2fa", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ session_id: current2FASessionId, code })
+      });
+
+      const data = await res.json();
+
+      if (data.status === "success") {
+        hideLoginModal();
+        renderTerminal(data);
+      } else {
+        showModalAlert(data.message || "Geçersiz 2FA kodu.", "error");
+      }
+    } catch (err) {
+      showModalAlert("Doğrulama hatası oluştu.", "error");
+    } finally {
+      submit2faBtn.disabled = false;
+    }
+  });
+
+  backToLoginBtn.addEventListener("click", () => {
+    twoFactorForm.classList.add("hidden");
+    loginForm.classList.remove("hidden");
+    hideModalAlert();
+  });
+
+  modalCloseBtn.addEventListener("click", hideLoginModal);
+  loginModal.addEventListener("click", (e) => {
+    if (e.target === loginModal) hideLoginModal();
+  });
+
+  loginBtn.addEventListener("click", showLoginModal);
+  if (emptyLoginBtn) {
+    emptyLoginBtn.addEventListener("click", showLoginModal);
+  }
+
+  logoutBtn.addEventListener("click", async () => {
+    try {
+      await fetch("/api/logout", { method: "POST" });
+      logoutBtn.classList.add("hidden");
+      await fetchInventory();
+    } catch (err) {
+      console.error("Çıkış hatası:", err);
+    }
+  });
+
+  // Search & Filter Events
   searchInput.addEventListener("input", (e) => {
     searchQuery = e.target.value;
     if (searchQuery.length > 0) {
@@ -306,5 +453,5 @@ document.addEventListener("DOMContentLoaded", () => {
   refreshBtn.addEventListener("click", fetchInventory);
 
   fetchInventory();
-  pollingInterval = setInterval(fetchInventory, 3000);
+  pollingInterval = setInterval(fetchInventory, 3500);
 });

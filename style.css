@@ -908,3 +908,237 @@ body {
     grid-template-columns: 1fr;
   }
 }
+
+
+/* Tactical Modal & Login Form */
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(16px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  animation: modalFadeIn 0.25s ease-out;
+}
+
+@keyframes modalFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.tactical-modal {
+  position: relative;
+  background: #020305;
+  border: 1px solid var(--border-subtle);
+  border-radius: 4px;
+  max-width: 480px;
+  width: 100%;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.95), 0 0 32px rgba(0, 240, 255, 0.15);
+  overflow: hidden;
+  animation: modalSlideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes modalSlideUp {
+  from { transform: translateY(20px) scale(0.97); }
+  to { transform: translateY(0) scale(1); }
+}
+
+.modal-hairline {
+  height: 2px;
+  background: linear-gradient(90deg, var(--riot-red), var(--cyan-neon), var(--gold-neon));
+  box-shadow: 0 0 12px var(--cyan-glow);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 20px 24px 12px 24px;
+}
+
+.modal-sys-code {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--cyan-neon);
+  letter-spacing: 1.5px;
+}
+
+.modal-title {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 1px;
+  margin-top: 2px;
+}
+
+.btn-modal-close {
+  background: transparent;
+  border: none;
+  color: var(--text-dim);
+  font-size: 26px;
+  cursor: pointer;
+  line-height: 1;
+  padding: 0 4px;
+  transition: color 0.2s;
+}
+
+.btn-modal-close:hover {
+  color: #fff;
+}
+
+.modal-body {
+  padding: 0 24px 24px 24px;
+}
+
+.modal-desc {
+  font-size: 12px;
+  color: var(--text-dim);
+  line-height: 1.5;
+  margin-bottom: 18px;
+}
+
+/* Modal Alert Banner */
+.modal-alert {
+  padding: 10px 14px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-family: var(--font-mono);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.modal-alert.error {
+  background: rgba(239, 68, 68, 0.15);
+  border: 1px solid rgba(239, 68, 68, 0.4);
+  color: #f87171;
+}
+
+.modal-alert.loading {
+  background: rgba(0, 240, 255, 0.1);
+  border: 1px solid var(--cyan-neon);
+  color: var(--cyan-neon);
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--text-dim);
+  letter-spacing: 1px;
+}
+
+.form-input {
+  background: #000;
+  border: 1px solid var(--border-subtle);
+  border-radius: 3px;
+  padding: 11px 14px;
+  color: #fff;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  outline: none;
+  transition: all 0.2s;
+}
+
+.form-input:focus {
+  border-color: var(--cyan-neon);
+  box-shadow: 0 0 14px rgba(0, 240, 255, 0.25);
+}
+
+.form-input.text-center {
+  text-align: center;
+  letter-spacing: 6px;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.w-full {
+  width: 100%;
+  justify-content: center;
+  padding: 12px;
+  font-size: 13px;
+}
+
+/* 2FA view */
+.two-factor-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(0, 240, 255, 0.05);
+  border: 1px solid rgba(0, 240, 255, 0.2);
+  padding: 12px;
+  border-radius: 4px;
+  margin-bottom: 6px;
+}
+
+.two-factor-icon {
+  font-size: 24px;
+}
+
+.two-factor-text h4 {
+  font-family: var(--font-display);
+  font-size: 13px;
+  color: #fff;
+  letter-spacing: 0.5px;
+}
+
+.two-factor-text p {
+  font-size: 11px;
+  color: var(--text-dim);
+}
+
+.btn-text-link {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  cursor: pointer;
+  text-align: center;
+  margin-top: 4px;
+  transition: color 0.2s;
+}
+
+.btn-text-link:hover {
+  color: #fff;
+}
+
+.modal-footer-note {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-muted);
+  margin-top: 18px;
+  border-top: 1px solid var(--border-subtle);
+  padding-top: 12px;
+}
+
+.sec-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #22c55e;
+}

@@ -49,7 +49,16 @@
           <span id="accountRegion" class="region-badge">TR/EU</span>
         </div>
 
-        
+        <!-- Riot Web Login Button -->
+        <button id="loginBtn" class="btn-tactical primary" title="Riot Games hesabınla giriş yap">
+          <span class="btn-glitch-accent"></span>
+          <span>RİOT İLE GİRİŞ YAP</span>
+        </button>
+
+        <!-- Logout Button -->
+        <button id="logoutBtn" class="btn-tactical hidden" title="Oturumu kapat">
+          <span>ÇIKIŞ YAP</span>
+        </button>
 
         <!-- Refresh -->
         <button id="refreshBtn" class="btn-refresh" title="Oturumu Yeniden Tara">
@@ -200,7 +209,7 @@
         <span id="filteredCountText" class="mono-text">SİSTEM TARANIYOR...</span>
       </div>
       <div class="meta-notice mono-text">
-        [VERİ KAYNAĞI: RIOT CLIENT LOCAL PVP GATEWAY]
+        [VERİ KAYNAĞI: RIOT GAMES API GATEWAY]
       </div>
     </div>
 
@@ -216,9 +225,85 @@
         <div class="reticle-ring ring-2"></div>
         <div class="reticle-crosshair"></div>
       </div>
-      <h3 id="emptyTitle">RIOT CLIENT BEKLENİYOR</h3>
-      <p id="emptyDesc">Riot Client veya VALORANT başlatıldığında hesabınızdaki tüm envanter otomatik olarak çözümlenecektir.</p>
-      
+      <h3 id="emptyTitle">OTURUM BEKLENİYOR</h3>
+      <p id="emptyDesc">Bilgisayarınızda Riot Client açık ise otomatik algılanır veya Riot Games hesabınız ile doğrudan giriş yapabilirsiniz.</p>
+      <div class="standby-actions">
+        <button id="emptyLoginBtn" class="btn-tactical primary">RİOT HESABINLA GİRİŞ YAP</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tactical Cyberpunk Login Modal -->
+  <div id="loginModal" class="modal-backdrop hidden">
+    <div class="tactical-modal">
+      <div class="modal-hairline"></div>
+      <div class="card-corner tl"></div>
+      <div class="card-corner tr"></div>
+      <div class="card-corner bl"></div>
+      <div class="card-corner br"></div>
+
+      <div class="modal-header">
+        <div class="modal-title-group">
+          <span class="modal-sys-code">// AUTH PROTOCOL : RIOT SIGN-ON</span>
+          <h2 class="modal-title">RİOT HESAP GİRİŞİ</h2>
+        </div>
+        <button id="modalCloseBtn" class="btn-modal-close">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <p class="modal-desc">
+          Riot Games hesabınızla giriş yaparak tüm silah kaplamalarınızı, cüzdanınızı ve hesap değerinizi kişiye özel olarak çözümleyin.
+        </p>
+
+        <!-- Error & Status Banner -->
+        <div id="modalAlert" class="modal-alert hidden"></div>
+
+        <!-- Step 1: Username & Password -->
+        <form id="loginForm" class="auth-form">
+          <div class="form-group">
+            <label for="usernameInput" class="form-label">RİOT KULLANICI ADI</label>
+            <input type="text" id="usernameInput" class="form-input" placeholder="Kullanıcı adınızı girin" required autocomplete="username">
+          </div>
+
+          <div class="form-group">
+            <label for="passwordInput" class="form-label">ŞİFRE</label>
+            <input type="password" id="passwordInput" class="form-input" placeholder="Şifrenizi girin" required autocomplete="current-password">
+          </div>
+
+          <button type="submit" id="submitLoginBtn" class="btn-tactical primary w-full">
+            <span>GİRİŞ YAP VE SKİNLERİ YÜKLE</span>
+          </button>
+        </form>
+
+        <!-- Step 2: 2FA Verification (Hidden initially) -->
+        <form id="twoFactorForm" class="auth-form hidden">
+          <div class="two-factor-header">
+            <div class="two-factor-icon">🔐</div>
+            <div class="two-factor-text">
+              <h4>İKİ ADIMLI DOĞRULAMA (2FA)</h4>
+              <p id="twoFactorEmail">E-postanıza gönderilen 6 haneli güvenlik kodunu girin.</p>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="twoFactorCodeInput" class="form-label">6 HANELİ GÜVENLİK KODU</label>
+            <input type="text" id="twoFactorCodeInput" class="form-input text-center" placeholder="123456" maxlength="8" required autocomplete="one-time-code">
+          </div>
+
+          <button type="submit" id="submit2faBtn" class="btn-tactical primary w-full">
+            <span>KODU ONAYLA VE GİR</span>
+          </button>
+
+          <button type="button" id="backToLoginBtn" class="btn-text-link">
+            &larr; Geri Dön
+          </button>
+        </form>
+
+        <div class="modal-footer-note">
+          <span class="sec-dot"></span>
+          <span>Giriş bilgileri Riot'un resmi API sunucularına iletilir, kaydedilmez.</span>
+        </div>
+      </div>
     </div>
   </div>
 
