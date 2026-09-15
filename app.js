@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let currentCategory = "all";
   let currentSort = "price_desc";
   let searchQuery = "";
-  let isDemoActive = false;
+  
   let pollingInterval = null;
 
   // DOM References
@@ -32,10 +32,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const emptyState = document.getElementById("emptyState");
   const emptyTitle = document.getElementById("emptyTitle");
   const emptyDesc = document.getElementById("emptyDesc");
-  const emptyDemoBtn = document.getElementById("emptyDemoBtn");
+  
 
-  const demoBtn = document.getElementById("demoBtn");
-  const demoBtnText = document.getElementById("demoBtnText");
+  
+  
   const refreshBtn = document.getElementById("refreshBtn");
 
   const catCountAll = document.getElementById("catCountAll");
@@ -94,7 +94,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function renderTerminal(data) {
     isDemoActive = data.is_demo || false;
-    updateDemoButton();
+    
 
     if (data.status === "waiting_riot_client") {
       updateStatus("waiting", "RIOT CLIENT BEKLENİYOR");
@@ -122,11 +122,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const reg = (acc.affinity || "EU").toUpperCase();
     const country = (acc.country || "TR").toUpperCase();
 
-    if (isDemoActive) {
-      updateStatus("connected", "DEMO SİMÜLASYONU AKTİF");
-    } else {
+    
       updateStatus("connected", "RIOT GATEWAY BAĞLANDI");
-    }
 
     accountPill.classList.remove("hidden");
     accountName.textContent = `${name}${tag}`;
@@ -163,11 +160,7 @@ document.addEventListener("DOMContentLoaded", () => {
     statusText.textContent = label;
   }
 
-  function updateDemoButton() {
-    if (isDemoActive) {
-      demoBtn.classList.add("active");
-      demoBtnText.textContent = "CANLI HESAP";
-    } else {
+   else {
       demoBtn.classList.remove("active");
       demoBtnText.textContent = "DEMO MODU";
     }
@@ -338,7 +331,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Static fallback toggle
     isDemoActive = !isDemoActive;
-    updateDemoButton();
+    
     if (isDemoActive) {
       renderTerminal({
         status: "success",
@@ -366,8 +359,8 @@ document.addEventListener("DOMContentLoaded", () => {
     ];
   }
 
-  demoBtn.addEventListener("click", toggleDemo);
-  emptyDemoBtn.addEventListener("click", toggleDemo);
+  
+  
   refreshBtn.addEventListener("click", fetchInventory);
 
   // Initial load & 3-second live refresh
