@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VALORANT // TACTICAL INVENTORY & VALUATION TERMINAL</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,500;0,700;1,700&family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Ambient Tactical Grid & Laser FX -->
+  <div class="cyber-bg">
+    <div class="cyber-scanline"></div>
+    <div class="cyber-grid"></div>
+    <div class="laser-beam"></div>
+  </div>
+
+  <div class="terminal-wrapper">
+    <!-- Top System Bar -->
+    <header class="tactical-header">
+      <div class="header-left">
+        <div class="brand-badge">
+          <svg class="v-mark" viewBox="0 0 100 100" fill="currentColor">
+            <path d="M99.25 19.5v52.68L68.83 99.75H47.16l52.09-80.25zM0 99.75l38.25-58.83L17.5 19.5 0 35.83v63.92z"/>
+          </svg>
+        </div>
+        <div class="brand-info">
+          <div class="sys-code">// PROTOCOL 04 : INVENTORY ANALYZER</div>
+          <h1 class="sys-title">VALORANT <span>VALUATION</span></h1>
+        </div>
+      </div>
+
+      <div class="header-right">
+        <!-- Live Connection Status -->
+        <div id="statusPill" class="tactical-status waiting">
+          <div class="status-indicator">
+            <span class="ping-wave"></span>
+            <span class="core-dot"></span>
+          </div>
+          <span id="statusText" class="mono-text">SİSTEM BAĞLANTISI BEKLENİYOR</span>
+        </div>
+
+        <!-- Account ID -->
+        <div id="accountPill" class="account-tag hidden">
+          <span class="tag-label">RIOT ID</span>
+          <span id="accountName" class="tag-val">PLAYER#TAG</span>
+          <span id="accountRegion" class="region-badge">TR/EU</span>
+        </div>
+
+        <!-- Demo Toggle -->
+        <button id="demoBtn" class="btn-tactical" title="Örnek yüksek değerli envanter simülasyonu">
+          <span class="btn-glitch-accent"></span>
+          <span id="demoBtnText">DEMO MODU</span>
+        </button>
+
+        <!-- Refresh -->
+        <button id="refreshBtn" class="btn-refresh" title="Oturumu Yeniden Tara">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2">
+            <path d="M21 2v6h-6M3 12a9 9 0 0 1 15.36-6.36L21 8M3 22v-6h6M21 12a9 9 0 0 1-15.36 6.36L3 16"/>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- Metrics HUD Grid -->
+    <section class="hud-grid">
+      <!-- Total Valuation Card -->
+      <div class="hud-card valuation-card">
+        <div class="card-corner tl"></div>
+        <div class="card-corner tr"></div>
+        <div class="card-corner bl"></div>
+        <div class="card-corner br"></div>
+        
+        <div class="hud-label">
+          <span>TOPLAM ENVANTER EDERİ</span>
+          <span class="spec-id">[01 // VP]</span>
+        </div>
+        
+        <div class="hud-value-row">
+          <span id="totalVp" class="hud-mega-num mono-text">0</span>
+          <span class="hud-unit">VP</span>
+        </div>
+        
+        <div class="hud-fiat-row">
+          <span class="fiat-label">TAHMİNİ TÜRK LİRASI DEĞERİ:</span>
+          <span id="totalTry" class="fiat-val mono-text">0 ₺</span>
+        </div>
+      </div>
+
+      <!-- Wallet HUD -->
+      <div class="hud-card wallet-card">
+        <div class="card-corner tl"></div>
+        <div class="card-corner tr"></div>
+        <div class="card-corner bl"></div>
+        <div class="card-corner br"></div>
+
+        <div class="hud-label">
+          <span>AKTİF HESAP BAKİYESİ</span>
+          <span class="spec-id">[02 // WALLET]</span>
+        </div>
+
+        <div class="wallet-trio">
+          <div class="wallet-col vp-col">
+            <span class="cur-tag">VALORANT POINTS</span>
+            <span id="walletVp" class="cur-num mono-text">0 VP</span>
+          </div>
+          <div class="wallet-col rp-col">
+            <span class="cur-tag">RADYANİT PUANI</span>
+            <span id="walletRp" class="cur-num mono-text">0 RP</span>
+          </div>
+          <div class="wallet-col kc-col">
+            <span class="cur-tag">KINGDOM CREDITS</span>
+            <span id="walletKc" class="cur-num mono-text">0 KC</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stats Counts -->
+      <div class="hud-card stat-count-card">
+        <div class="card-corner tl"></div>
+        <div class="card-corner tr"></div>
+        <div class="card-corner bl"></div>
+        <div class="card-corner br"></div>
+
+        <div class="hud-label">
+          <span>KAPLAMA SAYISI</span>
+          <span class="spec-id">[03 // TOTAL]</span>
+        </div>
+
+        <div class="hud-value-row">
+          <span id="totalSkinsCount" class="hud-mega-num mono-text">0</span>
+          <span class="hud-unit">ADET</span>
+        </div>
+
+        <div class="hud-sub-row">
+          <span class="sub-lead" id="knivesCount">0</span>
+          <span>BIÇAK & YAKIN DÖVÜŞ</span>
+        </div>
+      </div>
+
+      <!-- High Tier Counts -->
+      <div class="hud-card high-tier-card">
+        <div class="card-corner tl"></div>
+        <div class="card-corner tr"></div>
+        <div class="card-corner bl"></div>
+        <div class="card-corner br"></div>
+
+        <div class="hud-label">
+          <span>YÜKSEK SEVİYE KAPLAMA</span>
+          <span class="spec-id">[04 // TIER 3+]</span>
+        </div>
+
+        <div class="hud-value-row">
+          <span id="highTierCount" class="hud-mega-num mono-text">0</span>
+          <span class="hud-unit">ÖZEL</span>
+        </div>
+
+        <div class="hud-sub-row">
+          <span>PREMIUM, ULTRA & SEÇKİN</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tactical Filter & Control Console -->
+    <section class="console-section">
+      <!-- Search Input -->
+      <div class="tactical-search">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <input type="text" id="searchInput" placeholder="KAPLAMA VEYA SİLAH ARA..." autocomplete="off">
+        <button id="clearSearch" class="btn-clear hidden">&times;</button>
+      </div>
+
+      <!-- Category Filter Pills -->
+      <div class="category-pills" id="categoryTabs">
+        <button class="pill-btn active" data-category="all">TÜMÜ [<span id="catCountAll">0</span>]</button>
+        <button class="pill-btn" data-category="melee">BIÇAKLAR [<span id="catCountMelee">0</span>]</button>
+        <button class="pill-btn" data-category="rifle">VANDAL & PHANTOM [<span id="catCountRifle">0</span>]</button>
+        <button class="pill-btn" data-category="sniper">KESKİN NİŞANCI [<span id="catCountSniper">0</span>]</button>
+        <button class="pill-btn" data-category="hightier">YÜKSEK AŞAMA [<span id="catCountHigh">0</span>]</button>
+        <button class="pill-btn" data-category="bp">SAVAŞ BİLETİ [<span id="catCountBp">0</span>]</button>
+      </div>
+
+      <!-- Sort Console -->
+      <div class="sort-console">
+        <span class="sort-tag">SIRALAMA:</span>
+        <select id="sortSelect">
+          <option value="price_desc">EN DEĞERLİ (YÜKSEK VP)</option>
+          <option value="price_asc">EN DÜŞÜK DEĞERLİ</option>
+          <option value="tier_desc">AŞAMA SEVİYESİNE GÖRE</option>
+          <option value="name_asc">ALFABETİK (A-Z)</option>
+        </select>
+      </div>
+    </section>
+
+    <!-- Meta Status Line -->
+    <div class="meta-line">
+      <div class="meta-status">
+        <span class="status-marker"></span>
+        <span id="filteredCountText" class="mono-text">SİSTEM TARANIYOR...</span>
+      </div>
+      <div class="meta-notice mono-text">
+        [VERİ KAYNAĞI: RIOT CLIENT LOCAL PVP GATEWAY]
+      </div>
+    </div>
+
+    <!-- Main Skins Tactical Grid -->
+    <main id="skinsGrid" class="tactical-skins-grid">
+      <!-- Injected via app.js -->
+    </main>
+
+    <!-- Empty State / Standby Screen -->
+    <div id="emptyState" class="tactical-standby hidden">
+      <div class="standby-reticle">
+        <div class="reticle-ring ring-1"></div>
+        <div class="reticle-ring ring-2"></div>
+        <div class="reticle-crosshair"></div>
+      </div>
+      <h3 id="emptyTitle">RIOT CLIENT BEKLENİYOR</h3>
+      <p id="emptyDesc">Riot Client veya VALORANT başlatıldığında hesabınızdaki tüm envanter otomatik olarak çözümlenecektir.</p>
+      <div class="standby-actions">
+        <button id="emptyDemoBtn" class="btn-tactical primary">DEMO MODUNU BAŞLAT</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

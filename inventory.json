@@ -1,0 +1,602 @@
+{
+  "status": "success",
+  "is_demo": false,
+  "account": {
+    "game_name": "kapüşonlutalon",
+    "tag_line": "1337",
+    "affinity": "eu",
+    "country": "tr"
+  },
+  "wallet": {
+    "vp": 250,
+    "radianite": 700,
+    "kc": 5221
+  },
+  "summary": {
+    "total_skins": 20,
+    "total_vp": 22575,
+    "total_try": 6090,
+    "knives_count": 1,
+    "high_tier_count": 1
+  },
+  "skins": [
+    {
+      "uuid": "c39f405f-42f1-acd1-a350-d3af39c32e33",
+      "name": "Artizan Flöre",
+      "weapon": "Bıçak",
+      "weapon_category": "melee",
+      "is_melee": true,
+      "tier_uuid": "e046854e-406c-37f4-6607-19a9ba8426fc",
+      "tier_name": "Seçkin",
+      "tier_code": "EXCLUSIVE",
+      "tier_rank": 5,
+      "tier_color": "#f5955b",
+      "badge": "TIER // EXCLUSIVE",
+      "icon": "https://media.valorant-api.com/weaponskins/c39f405f-42f1-acd1-a350-d3af39c32e33/displayicon.png",
+      "price_vp": 4350,
+      "price_try": 1174,
+      "total_levels": 1,
+      "total_chromas": 4,
+      "is_default": false,
+      "is_battlepass": false,
+      "level_uuids": [
+        "704a71ab-4b0e-6e03-466e-5b9ca9d987fd"
+      ],
+      "chroma_uuids": [
+        "b5bdd4c9-4b22-a4d3-1ca4-4c8348f6a41d",
+        "5020a4c0-4908-3670-09a1-6e97dc8334bc",
+        "a3f9e00a-45cb-f33c-c9cf-66806ed4ee59",
+        "91af4e35-41a8-3d96-d5cd-ff8cb402840b"
+      ],
+      "unlocked_levels": 1,
+      "unlocked_chromas": 4
+    },
+    {
+      "uuid": "909daea4-49ab-7b99-46fb-aa8c9e6fd837",
+      "name": "Artizan Phantom",
+      "weapon": "PHANTOM",
+      "weapon_category": "rifle",
+      "is_melee": false,
+      "tier_uuid": "0cebb8be-46d7-c12a-d306-e9907bfc5a25",
+      "tier_name": "Üstün",
+      "tier_code": "DELUXE",
+      "tier_rank": 2,
+      "tier_color": "#00f0ff",
+      "badge": "TIER // DELUXE",
+      "icon": "https://media.valorant-api.com/weaponskinlevels/76f9caa0-40ae-ecd2-5598-53b0beb969c7/displayicon.png",
+      "price_vp": 1275,
+      "price_try": 344,
+      "total_levels": 1,
+      "total_chromas": 4,
+      "is_default": false,
+      "is_battlepass": false,
+      "level_uuids": [
+        "76f9caa0-40ae-ecd2-5598-53b0beb969c7"
+      ],
+      "chroma_uuids": [
+        "98850230-4ab7-8a9a-b9c9-4da19b5bd33f",
+        "d35b860c-4514-2478-9156-bea2a1518d9f",
+        "0e3a29ce-4950-227b-e3c9-d3b6ed0d5881",
+        "5925c424-48c7-4879-fb56-7aa6b4c4c96f"
+      ],
+      "unlocked_levels": 1,
+      "unlocked_chromas": 4
+    },
+    {
+      "uuid": "4986a893-48a5-4c23-11f2-70bb9e9d284d",
+      "name": "Artizan Marshal",
+      "weapon": "MARSHAL",
+      "weapon_category": "sniper",
+      "is_melee": false,
+      "tier_uuid": "0cebb8be-46d7-c12a-d306-e9907bfc5a25",
+      "tier_name": "Üstün",
+      "tier_code": "DELUXE",
+      "tier_rank": 2,
+      "tier_color": "#00f0ff",
+      "badge": "TIER // DELUXE",
+      "icon": "https://media.valorant-api.com/weaponskinlevels/c779f43f-47cc-fe29-63aa-bb8b91b36e42/displayicon.png",
+      "price_vp": 1275,
+      "price_try": 344,
+      "total_levels": 1,
+      "total_chromas": 4,
+      "is_default": false,
+      "is_battlepass": false,
+      "level_uuids": [
+        "c779f43f-47cc-fe29-63aa-bb8b91b36e42"
+      ],
+      "chroma_uuids": [
+        "422f7941-4fd7-572c-241d-8ca84846b31a",
+        "61535303-43a7-c6d1-85ab-2c9080814e1a",
+        "9de8140d-4f88-0f50-0689-2fbc6019003f",
+        "acf1784e-4796-794d-97c3-0ba1fdc7f7c0"
+      ],
+      "unlocked_levels": 1,
+      "unlocked_chromas": 4
+    },
+    {
+      "uuid": "1a97f146-4fcf-5a04-140e-4390feafaa73",
+      "name": "Artizan Bucky",
+      "weapon": "BUCKY",
+      "weapon_category": "shotgun",
+      "is_melee": false,
+      "tier_uuid": "0cebb8be-46d7-c12a-d306-e9907bfc5a25",
+      "tier_name": "Üstün",
+      "tier_code": "DELUXE",
+      "tier_rank": 2,
+      "tier_color": "#00f0ff",
+      "badge": "TIER // DELUXE",
+      "icon": "https://media.valorant-api.com/weaponskinlevels/5466bacf-446b-52a1-611d-339f6f376d40/displayicon.png",
+      "price_vp": 1275,
+      "price_try": 344,
+      "total_levels": 1,
+      "total_chromas": 4,
+      "is_default": false,
+      "is_battlepass": false,
+      "level_uuids": [
+        "5466bacf-446b-52a1-611d-339f6f376d40"
+      ],
+      "chroma_uuids": [
+        "7d3d59cc-4212-cb8b-324b-9fab41c2f8f0",
+        "a17293ed-4e1b-9ab4-c58d-38b2795150ce",
+        "7a603467-449a-2f51-5e32-14bcdf5a0661",
+        "98cdc24c-4c05-cf45-5564-4f97b1551bb5"
+      ],
+      "unlocked_levels": 1,
+      "unlocked_chromas": 4
+    },
+    {
+      "uuid": "8dfec665-4836-d498-2896-08a16c092133",
+      "name": "Artizan Ghost",
+      "weapon": "GHOST",
+      "weapon_category": "sidearm",
+      "is_melee": false,
+      "tier_uuid": "0cebb8be-46d7-c12a-d306-e9907bfc5a25",
+      "tier_name": "Üstün",
+      "tier_code": "DELUXE",
+      "tier_rank": 2,
+      "tier_color": "#00f0ff",
+      "badge": "TIER // DELUXE",
+      "icon": "https://media.valorant-api.com/weaponskinlevels/b70db444-4ede-9cee-25dd-35b2edb38cd5/displayicon.png",
+      "price_vp": 1275,
+      "price_try": 344,
+      "total_levels": 1,
+      "total_chromas": 4,
+      "is_default": false,
+      "is_battlepass": false,
+      "level_uuids": [
+        "b70db444-4ede-9cee-25dd-35b2edb38cd5"
+      ],
+      "chroma_uuids": [
+        "92c43211-412d-6c8e-7b64-1094d5b547a0",
+        "201b7a92-4e87-ae9a-aee0-18bad208ce2a",
+        "60ee4a17-4382-e31e-9b9d-db9db348db03",
+        "ebb269df-4304-70aa-7dcd-9dbca855a9a1"
+      ],
+      "unlocked_levels": 1,
+      "unlocked_chromas": 4
+    },
+    {
+      "uuid": "9b62faf1-416c-b736-0edb-39b890f1f18d",
+      "name": "Nitro Vandal",
+      "weapon": "VANDAL",
+      "weapon_category": "rifle",
+      "is_melee": false,
+      "tier_uuid": "12683d76-48d7-84a3-4e09-6985794f0445",
+      "tier_name": "Seçici",
+      "tier_code": "SELECT",
+      "tier_rank": 1,
+      "tier_color": "#5a9fe2",
+      "badge": "TIER // SELECT",
+      "icon": "https://media.valorant-api.com/weaponskinlevels/f910a11a-40ab-d799-3782-c58674f7ada0/displayicon.png",
+      "price_vp": 875,
+      "price_try": 236,
+      "total_levels": 1,
+      "total_chromas": 1,
+      "is_default": false,
+      "is_battlepass": false,
+      "level_uuids": [
+        "f910a11a-40ab-d799-3782-c58674f7ada0"
+      ],
+      "chroma_uuids": [
+        "da58de2d-48c2-b00f-8647-2c86b49dc680"
+      ],
+      "unlocked_levels": 1,
+      "unlocked_chromas": 1
+    },
+    {
+      "uuid": "44064b11-4e74-19c9-80a4-9f80875adaf5",
+      "name": "Nitro Operator",
+      "weapon": "OPERATOR",
+      "weapon_category": "sniper",
+      "is_melee": false,
+      "tier_uuid": "12683d76-48d7-84a3-4e09-6985794f0445",
+      "tier_name": "Seçici",
+      "tier_code": "SELECT",
+      "tier_rank": 1,
+      "tier_color": "#5a9fe2",
+      "badge": "TIER // SELECT",
+      "icon": "https://media.valorant-api.com/weaponskinlevels/f49ac94f-4965-1e13-e293-a9838b042a83/displayicon.png",
+      "price_vp": 875,
+      "price_try": 236,
+      "total_levels": 1,
+      "total_chromas": 1,
+      "is_default": false,
+      "is_battlepass": false,
+      "level_uuids": [
+        "f49ac94f-4965-1e13-e293-a9838b042a83"
+      ],
+      "chroma_uuids": [
+        "3116414a-47d5-da50-b27f-a4be014a7951"
+      ],
+      "unlocked_levels": 1,
+      "unlocked_chromas": 1
+    },
+    {
+      "uuid": "00e6b758-448e-af3b-7dee-879aa4a51324",
+      "name": "Nitro Guardian",
+      "weapon": "GUARDIAN",
+      "weapon_category": "rifle",
+      "is_melee": false,
+      "tier_uuid": "12683d76-48d7-84a3-4e09-6985794f0445",
+      "tier_name": "Seçici",
+      "tier_code": "SELECT",
+      "tier_rank": 1,
+      "tier_color": "#5a9fe2",
+      "badge": "TIER // SELECT",
+      "icon": "https://media.valorant-api.com/weaponskinlevels/03d98493-4964-3f66-7e23-7581bbcfa501/displayicon.png",
+      "price_vp": 875,
+      "price_try": 236,
+      "total_levels": 1,
+      "total_chromas": 1,
+      "is_default": false,
+      "is_battlepass": false,
+      "level_uuids": [
+        "03d98493-4964-3f66-7e23-7581bbcfa501"
+      ],
+      "chroma_uuids": [
+        "c8721633-461a-a7be-8777-bd96c9332470"
+      ],
+      "unlocked_levels": 1,
+      "unlocked_chromas": 1
+    },
+    {
+      "uuid": "2715f184-46cc-bec1-dd7c-e7b4d1aeb625",
+      "name": "Nitro Odin",
+      "weapon": "ODIN",
+      "weapon_category": "heavy",
+      "is_melee": false,
+      "tier_uuid": "12683d76-48d7-84a3-4e09-6985794f0445",
+      "tier_name": "Seçici",
+      "tier_code": "SELECT",
+      "tier_rank": 1,
+      "tier_color": "#5a9fe2",
+      "badge": "TIER // SELECT",
+      "icon": "https://media.valorant-api.com/weaponskinlevels/5f86ac54-46b0-806f-f200-dd89fbcd7cb9/displayicon.png",
+      "price_vp": 875,
+      "price_try": 236,
+      "total_levels": 1,
+      "total_chromas": 1,
+      "is_default": false,
+      "is_battlepass": false,
+      "level_uuids": [
+        "5f86ac54-46b0-806f-f200-dd89fbcd7cb9"
+      ],
+      "chroma_uuids": [
+        "064eb4b1-477a-23ba-2f70-6a9732f68ece"
+      ],
+      "unlocked_levels": 1,
+      "unlocked_chromas": 1
+    },
+    {
+      "uuid": "9bba8d9a-461e-9783-fcb7-f1a92192fb3a",
+      "name": "Ahşap Bulldog",
+      "weapon": "BULLDOG",
+      "weapon_category": "rifle",
+      "is_melee": false,
+      "tier_uuid": "12683d76-48d7-84a3-4e09-6985794f0445",
+      "tier_name": "Seçici",
+      "tier_code": "SELECT",
+      "tier_rank": 1,
+      "tier_color": "#5a9fe2",
+      "badge": "TIER // SELECT",
+      "icon": "https://media.valorant-api.com/weaponskins/9bba8d9a-461e-9783-fcb7-f1a92192fb3a/displayicon.png",
+      "price_vp": 875,
+      "price_try": 236,
+      "total_levels": 1,
+      "total_chromas": 1,
+      "is_default": false,
+      "is_battlepass": false,
+      "level_uuids": [
+        "0edd85d1-4589-385a-e5e2-84a55ae9860d"
+      ],
+      "chroma_uuids": [
+        "97e3f19b-441e-4a98-a39f-fda730fa0bfd"
+      ],
+      "unlocked_levels": 1,
+      "unlocked_chromas": 1
+    },
+    {
+      "uuid": "87591a69-47c1-a052-ba85-33a8097a0b07",
+      "name": "Ahşap Judge",
+      "weapon": "JUDGE",
+      "weapon_category": "shotgun",
+      "is_melee": false,
+      "tier_uuid": "12683d76-48d7-84a3-4e09-6985794f0445",
+      "tier_name": "Seçici",
+      "tier_code": "SELECT",
+      "tier_rank": 1,
+      "tier_color": "#5a9fe2",
+      "badge": "TIER // SELECT",
+      "icon": "https://media.valorant-api.com/weaponskins/87591a69-47c1-a052-ba85-33a8097a0b07/displayicon.png",
+      "price_vp": 875,
+      "price_try": 236,
+      "total_levels": 1,
+      "total_chromas": 1,
+      "is_default": false,
+      "is_battlepass": false,
+      "level_uuids": [
+        "07ac5e03-42e6-0fd9-b8fa-4d9f059b904f"
+      ],
+      "chroma_uuids": [
+        "11f42c0a-4b6c-982e-8477-d5b55a329d43"
+      ],
+      "unlocked_levels": 1,
+      "unlocked_chromas": 1
+    },
+    {
+      "uuid": "42eaceac-46b2-eec0-2cca-10937761fe9e",
+      "name": "Ahşap Sheriff",
+      "weapon": "SHERIFF",
+      "weapon_category": "sidearm",
+      "is_melee": false,
+      "tier_uuid": "12683d76-48d7-84a3-4e09-6985794f0445",
+      "tier_name": "Seçici",
+      "tier_code": "SELECT",
+      "tier_rank": 1,
+      "tier_color": "#5a9fe2",
+      "badge": "TIER // SELECT",
+      "icon": "https://media.valorant-api.com/weaponskins/42eaceac-46b2-eec0-2cca-10937761fe9e/displayicon.png",
+      "price_vp": 875,
+      "price_try": 236,
+      "total_levels": 1,
+      "total_chromas": 1,
+      "is_default": false,
+      "is_battlepass": false,
+      "level_uuids": [
+        "5fb2a965-4cd9-0564-c8b1-51895ba7718a"
+      ],
+      "chroma_uuids": [
+        "3c0a4650-4606-0e21-0e73-1aa54f514ec4"
+      ],
+      "unlocked_levels": 1,
+      "unlocked_chromas": 1
+    },
+    {
+      "uuid": "26fbcf26-4135-b8e3-277e-8a9c27e3d34d",
+      "name": "Ahşap Stinger",
+      "weapon": "STINGER",
+      "weapon_category": "smg",
+      "is_melee": false,
+      "tier_uuid": "12683d76-48d7-84a3-4e09-6985794f0445",
+      "tier_name": "Seçici",
+      "tier_code": "SELECT",
+      "tier_rank": 1,
+      "tier_color": "#5a9fe2",
+      "badge": "TIER // SELECT",
+      "icon": "https://media.valorant-api.com/weaponskins/26fbcf26-4135-b8e3-277e-8a9c27e3d34d/displayicon.png",
+      "price_vp": 875,
+      "price_try": 236,
+      "total_levels": 1,
+      "total_chromas": 1,
+      "is_default": false,
+      "is_battlepass": false,
+      "level_uuids": [
+        "d1e1f521-4c6b-a47d-6c02-f5a5de9dab48"
+      ],
+      "chroma_uuids": [
+        "b4c63d7e-448c-2c23-ad49-0f8b61f18b1d"
+      ],
+      "unlocked_levels": 1,
+      "unlocked_chromas": 1
+    },
+    {
+      "uuid": "34f735c0-4fcd-b4fd-fb34-fbab97b42a41",
+      "name": "Seyyah Sheriff",
+      "weapon": "SHERIFF",
+      "weapon_category": "sidearm",
+      "is_melee": false,
+      "tier_uuid": "12683d76-48d7-84a3-4e09-6985794f0445",
+      "tier_name": "Seçici",
+      "tier_code": "SELECT",
+      "tier_rank": 1,
+      "tier_color": "#5a9fe2",
+      "badge": "TIER // SELECT",
+      "icon": "https://media.valorant-api.com/weaponskins/34f735c0-4fcd-b4fd-fb34-fbab97b42a41/displayicon.png",
+      "price_vp": 875,
+      "price_try": 236,
+      "total_levels": 1,
+      "total_chromas": 1,
+      "is_default": false,
+      "is_battlepass": false,
+      "level_uuids": [
+        "b9bf9657-411e-8fe3-b717-b99ba01fe07a"
+      ],
+      "chroma_uuids": [
+        "0d3c5ca0-49a2-eef8-d01a-2e9dd8d5d574"
+      ],
+      "unlocked_levels": 1,
+      "unlocked_chromas": 1
+    },
+    {
+      "uuid": "26ff0e3e-469a-cbdd-f79f-a3b89556cdef",
+      "name": "BARIŞÇIL SHERIFF",
+      "weapon": "SHERIFF",
+      "weapon_category": "sidearm",
+      "is_melee": false,
+      "tier_uuid": "12683d76-48d7-84a3-4e09-6985794f0445",
+      "tier_name": "Seçici",
+      "tier_code": "SELECT",
+      "tier_rank": 1,
+      "tier_color": "#5a9fe2",
+      "badge": "TIER // SELECT",
+      "icon": "https://media.valorant-api.com/weaponskins/26ff0e3e-469a-cbdd-f79f-a3b89556cdef/displayicon.png",
+      "price_vp": 875,
+      "price_try": 236,
+      "total_levels": 1,
+      "total_chromas": 1,
+      "is_default": false,
+      "is_battlepass": false,
+      "level_uuids": [
+        "ec570f46-4751-eeb6-7739-069bcbb8d05a"
+      ],
+      "chroma_uuids": [
+        "1dd0ffff-4b70-a7a2-2f22-1e97fbce6dae"
+      ],
+      "unlocked_levels": 1,
+      "unlocked_chromas": 1
+    },
+    {
+      "uuid": "f20bdd80-4cbf-67a8-106e-72bbf94336aa",
+      "name": "Yapboz Ghost",
+      "weapon": "GHOST",
+      "weapon_category": "sidearm",
+      "is_melee": false,
+      "tier_uuid": "12683d76-48d7-84a3-4e09-6985794f0445",
+      "tier_name": "Seçici",
+      "tier_code": "SELECT",
+      "tier_rank": 1,
+      "tier_color": "#5a9fe2",
+      "badge": "TIER // SELECT",
+      "icon": "https://media.valorant-api.com/weaponskins/f20bdd80-4cbf-67a8-106e-72bbf94336aa/displayicon.png",
+      "price_vp": 875,
+      "price_try": 236,
+      "total_levels": 1,
+      "total_chromas": 4,
+      "is_default": false,
+      "is_battlepass": false,
+      "level_uuids": [
+        "d0793c86-471d-c60c-b0da-bcbadcd8bf12"
+      ],
+      "chroma_uuids": [
+        "9ccadf9e-4a56-94a7-bcb5-b0b075b2ebcb",
+        "934b1889-4c45-941e-bc4d-33ae25f0dcb0",
+        "4c087a53-44d1-a1ee-a8bb-2991eed7c249",
+        "8c893a71-4ec0-ece4-8cdf-79b08e29f0b8"
+      ],
+      "unlocked_levels": 1,
+      "unlocked_chromas": 4
+    },
+    {
+      "uuid": "47d5e54a-48e5-b62a-5cf5-3cb7efc12e90",
+      "name": "SON YOLCULUK CLASSIC",
+      "weapon": "CLASSIC",
+      "weapon_category": "sidearm",
+      "is_melee": false,
+      "tier_uuid": "12683d76-48d7-84a3-4e09-6985794f0445",
+      "tier_name": "Seçici",
+      "tier_code": "SELECT",
+      "tier_rank": 1,
+      "tier_color": "#5a9fe2",
+      "badge": "TIER // SELECT",
+      "icon": "https://media.valorant-api.com/weaponskinlevels/bbbe4b32-457c-e4fb-a674-1d9c3885d331/displayicon.png",
+      "price_vp": 875,
+      "price_try": 236,
+      "total_levels": 1,
+      "total_chromas": 1,
+      "is_default": false,
+      "is_battlepass": false,
+      "level_uuids": [
+        "bbbe4b32-457c-e4fb-a674-1d9c3885d331"
+      ],
+      "chroma_uuids": [
+        "528232a1-4d11-e724-5c1b-b3bb0c392c84"
+      ],
+      "unlocked_levels": 1,
+      "unlocked_chromas": 1
+    },
+    {
+      "uuid": "d6af3716-4ab5-8204-a2f4-1eb4ffc51088",
+      "name": "KESKİN KANAT FRENZY",
+      "weapon": "FRENZY",
+      "weapon_category": "sidearm",
+      "is_melee": false,
+      "tier_uuid": "12683d76-48d7-84a3-4e09-6985794f0445",
+      "tier_name": "Seçici",
+      "tier_code": "SELECT",
+      "tier_rank": 1,
+      "tier_color": "#5a9fe2",
+      "badge": "TIER // SELECT",
+      "icon": "https://media.valorant-api.com/weaponskins/d6af3716-4ab5-8204-a2f4-1eb4ffc51088/displayicon.png",
+      "price_vp": 875,
+      "price_try": 236,
+      "total_levels": 1,
+      "total_chromas": 1,
+      "is_default": false,
+      "is_battlepass": false,
+      "level_uuids": [
+        "2f911f78-46e4-102a-f677-37a069c3a4dc"
+      ],
+      "chroma_uuids": [
+        "8a7f5a9a-4865-8908-93bd-1f96f04ec8c3"
+      ],
+      "unlocked_levels": 1,
+      "unlocked_chromas": 1
+    },
+    {
+      "uuid": "b454bb93-4dd5-5a7c-6720-38afd82bfd78",
+      "name": "Kanka Shorty",
+      "weapon": "SHORTY",
+      "weapon_category": "sidearm",
+      "is_melee": false,
+      "tier_uuid": "12683d76-48d7-84a3-4e09-6985794f0445",
+      "tier_name": "Seçici",
+      "tier_code": "SELECT",
+      "tier_rank": 1,
+      "tier_color": "#5a9fe2",
+      "badge": "TIER // SELECT",
+      "icon": "https://media.valorant-api.com/weaponskins/b454bb93-4dd5-5a7c-6720-38afd82bfd78/displayicon.png",
+      "price_vp": 875,
+      "price_try": 236,
+      "total_levels": 1,
+      "total_chromas": 1,
+      "is_default": false,
+      "is_battlepass": false,
+      "level_uuids": [
+        "acab9281-445b-e301-19c6-fe91e3ef27fa"
+      ],
+      "chroma_uuids": [
+        "4c2160d7-4650-5bd8-24b1-a1b83be8b0c4"
+      ],
+      "unlocked_levels": 1,
+      "unlocked_chromas": 1
+    },
+    {
+      "uuid": "310b80d8-4e1b-b4f0-b713-9dad458ce734",
+      "name": "DÂHİ ÇOCUK SHORTY",
+      "weapon": "SHORTY",
+      "weapon_category": "sidearm",
+      "is_melee": false,
+      "tier_uuid": "12683d76-48d7-84a3-4e09-6985794f0445",
+      "tier_name": "Seçici",
+      "tier_code": "SELECT",
+      "tier_rank": 1,
+      "tier_color": "#5a9fe2",
+      "badge": "TIER // SELECT",
+      "icon": "https://media.valorant-api.com/weaponskins/310b80d8-4e1b-b4f0-b713-9dad458ce734/displayicon.png",
+      "price_vp": 875,
+      "price_try": 236,
+      "total_levels": 1,
+      "total_chromas": 1,
+      "is_default": false,
+      "is_battlepass": false,
+      "level_uuids": [
+        "f9688e62-42c5-9f10-f160-49abaee2e02c"
+      ],
+      "chroma_uuids": [
+        "eb54deca-4ae4-07c5-f506-8f9f2ec6331b"
+      ],
+      "unlocked_levels": 1,
+      "unlocked_chromas": 1
+    }
+  ]
+}
